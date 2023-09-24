@@ -1,0 +1,41 @@
+# O ! indica que o campo é obrigatório
+
+type Category {
+  id: ID!
+  name: String!
+  description: String
+  courses: [Course]!
+}
+
+type Course {
+  id: ID!
+  name: String!
+  description: String
+  category: Category!
+}
+
+# input é usado pra declarar uma entrada
+input NewCategory {
+  name: String!
+  description: String
+
+}
+
+input NewCourse {
+  name: String!
+  description: String
+  categoryId: ID!
+
+}
+
+#fazer buscas
+type Query {
+  categories: [Category!]!
+  courses: [Course!]!
+}
+
+#fazer inserções
+type Mutation {
+  createCategory(input: NewCategory!): Category!
+  createCourse(input: NewCourse!): Course!
+}
